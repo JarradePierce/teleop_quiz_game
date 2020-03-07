@@ -1,4 +1,4 @@
-class PlayersController < AplicationController
+class PlayersController < ApplicationController
 
   def index
     @players = player.all
