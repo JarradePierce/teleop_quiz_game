@@ -1,6 +1,12 @@
 require 'bcrypt'
 
 class User < ApplicationRecord
+  attr_accessor :password_hash
+  has_secure_password
+
+  validates :username, :email, :password, presence: true, :on => :create
+  validates :username, :email, uniqueness: true
+  
   has_many :games
 
   # users.password_hash in the database is a :string

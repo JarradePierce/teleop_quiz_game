@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_06_014624) do
+ActiveRecord::Schema.define(version: 2021_06_22_005257) do
+
+  create_table "answers", force: :cascade do |t|
+    t.text "answer"
+    t.boolean "right_answer"
+    t.integer "question_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "games", force: :cascade do |t|
-    t.text "info"
+    t.string "name"
+    t.text "description"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -28,8 +38,15 @@ ActiveRecord::Schema.define(version: 2020_03_06_014624) do
 
   create_table "questions", force: :cascade do |t|
     t.text "question"
-    t.text "answer"
     t.integer "game_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

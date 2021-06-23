@@ -1,15 +1,19 @@
 class GamesController < ApplicationController
+include SessionsHelper
 
   def index
     @games = Game.all
+    @user = current_user
   end
 
   def new
     @game = Game.new
+    @user = current_user
   end
 
   def create
     @game = Question.new(game_params)
+    @user = current_user
 
     respond_to do |format|
       if @game.save

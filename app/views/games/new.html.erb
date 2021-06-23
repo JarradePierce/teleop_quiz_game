@@ -1,0 +1,10 @@
+<div class='jumbotron'>
+  <div class='blog-form-container'>
+    <%= form_for @game, url: { action: "create" } do |f| %>
+      <%= f.text_field :name, placeholder: "Game title", class: "new-game-title" %><br />
+      <%= f.text_area :description, placeholder: "description", class: "new-game-body" %><br />
+      <%= f.hidden_field :user_id, value: @user.id %>
+      <button class='btn btn-success new-game-submit' type='submit'>Create Game</button>
+    <% end %>
+  </div>
+ </div>
