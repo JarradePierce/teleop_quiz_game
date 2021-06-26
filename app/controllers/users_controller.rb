@@ -10,21 +10,21 @@ class UsersController < ApplicationController
  end
 
  def create
-   @user = User.new(user_params)
+ @user = User.new(user_params)
 
-     if @user.valid? && User.count < 1
-       respond_to do |format|
-         if @user.save
-           session[:id] = @user.id
-           format.html { redirect_to @user, notice: "#{@user.username}'s' new account created" }
-           format.json { render :show, status: :created, location: @user }
-         else
-           format.html { render :new }
-           format.json { render json: @user.errors, status: :unprocessable_entity }
-         end
+   if @user.valid? && User.count < 1
+     respond_to do |format|
+       if @user.save
+         session[:id] = @user.id
+         format.html { redirect_to root_path, notice: "#{@user.username}'s' new account created" }
+         format.json { render :show, status: :created, location: @user }
+       else
+         format.html { render :new }
+         format.json { render json: @user.errors, status: :unprocessable_entity }
        end
      end
- end
+   end
+  end
 
  private
 

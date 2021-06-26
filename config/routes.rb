@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
   resources :games
 
-  resources :users
+  resources :users do
+    resources :games, only: [:edit, :update, :destroy, :show, :create, :new]
+  end
 
   resources :sessions, only: [:create, :new, :destroy]
 
   delete '/logout' => 'sessions#destroy'
   post '/login' => 'sessions#create'
   get '/login' => 'sessions#new'
-  
-  root to: "games#index"
+
+  root to: "users#new"
 end

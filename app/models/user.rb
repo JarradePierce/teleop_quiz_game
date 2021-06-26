@@ -1,23 +1,28 @@
-require 'bcrypt'
-
 class User < ApplicationRecord
-  attr_accessor :password_hash
   has_secure_password
-
-  validates :username, :email, :password, presence: true, :on => :create
-  validates :username, :email, uniqueness: true
-  
   has_many :games
 
-  # users.password_hash in the database is a :string
-  include BCrypt
+  validates_presence_of :username, :email
 
-  def password
-    @password ||= Password.new(password_hash)
+  def check_answer(game)
+    @answer = game.questions.answers.each do |answer|
+      answer.right_answer
+
+      if @answer
+        add_points(find_player)
+      end
+    end
   end
 
-  def password=(new_password)
-    @password = Password.create(new_password)
-    self.password_hash = @password
+  def add_points(player)
+    player.points += 1000
+  end
+
+  def find_game
+    Game.find(params[:id])
+  end
+
+  def find_player
+    Player.find(params[:id])
   end
 end
