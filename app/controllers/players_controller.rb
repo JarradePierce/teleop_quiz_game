@@ -9,6 +9,7 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       if @player.save
+        session[:id] = @player.id
         format.html {redirect_to root_path, notice: "created new player"}
         format.json {render :index, status: :created, location: @player}
       else

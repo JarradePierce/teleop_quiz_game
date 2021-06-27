@@ -24,6 +24,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = find_question
+    @game = find_game
   end
 
   private
@@ -32,7 +33,11 @@ class QuestionsController < ApplicationController
     params.require(:question).permit(:info)
   end
 
-  def find_game
+  def find_question
     @question = Question.find(params[:id])
+  end
+
+  def find_game
+    @game = Game.find(params[:id])
   end
 end

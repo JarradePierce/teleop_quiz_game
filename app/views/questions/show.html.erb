@@ -1,0 +1,13 @@
+<h1>Teleop Quiz</h1>
+<h2><%= @question.question %></h2>
+  <ul>
+    <% @question.answers.each do |answer|%>
+      <li><%= answer.answer %></li>
+    <% end %>
+  </ul>
+<h2>players</h2>
+<ul>
+  <% @game.players.each do |player| %>
+    <li><%= player.alias %></li>
+  <% end %>
+</ul>

@@ -12,7 +12,7 @@ include SessionsHelper
   end
 
   def create
-    @game = Question.new(game_params)
+    @game = Game.new(game_params)
     @user = current_user
 
     respond_to do |format|
