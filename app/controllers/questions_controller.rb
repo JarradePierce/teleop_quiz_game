@@ -22,8 +22,17 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def check_answer
+    if @answer.right_answer
+      flash.alert = "Correct."
+    else
+      flash.alert = "Incorrect"
+    end
+  end
+
   def show
     @question = find_question
+    @answers = @question.answers
     @game = find_game
   end
 

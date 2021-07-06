@@ -1,10 +1,12 @@
 <h1>Teleop Quiz</h1>
 <h2><%= @question.question %></h2>
-  <ul>
-    <% @question.answers.each do |answer|%>
-      <li><%= answer.answer %></li>
+  <% @question.answers.each do |answer|%>
+    <p><%= answer.answer %></p>
+    <%= form_for answer, url: {action: "check_answer"} do |f|%>
+      <%= f.check_box :right_answer, {:class => "anyclass", :style => "anystyle"} %>
+      <%= f.hidden_field :question_id %>
     <% end %>
-  </ul>
+  <% end %>
 <h2>players</h2>
 <ul>
   <% @game.players.each do |player| %>
